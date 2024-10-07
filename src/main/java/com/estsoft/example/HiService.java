@@ -2,9 +2,8 @@ package com.estsoft.example;
 
 import org.springframework.stereotype.Service;
 
+// @ComponentScan(basePackages = "com.estsoft.example") 컴포넌트 스캔 대상3
 @Service
 public class HiService {
-    public String sayHi() {
-        return "Hi!";
-    }
 }
+
