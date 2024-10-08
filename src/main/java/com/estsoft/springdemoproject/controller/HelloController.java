@@ -1,10 +1,7 @@
 package com.estsoft.springdemoproject.controller;
 
 import com.estsoft.interf.InterDependencyService;
-import com.estsoft.springdemoproject.ioc.Member;
 import com.estsoft.springdemoproject.service.HelloService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

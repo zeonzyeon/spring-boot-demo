@@ -1,6 +1,5 @@
 package com.estsoft.interf;
 
-import com.estsoft.springdemoproject.ioc.Inter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 

@@ -1,0 +1,15 @@
+### 학생 이름 목록 조회
+GET http://localhost:8080/students/names
+Accept: application/json
+
+### 특정 학생 이름과 나이를 조건으로 조회
+GET http://localhost:8080/students/name-age?name=John&age=20
+Accept: application/json
+
+### 특정 이름과 나이를 조건으로 전체 학생 정보 조회
+GET http://localhost:8080/students/full-info?name=John&age=20
+Accept: application/json
+
+### 강사 이름 목록 조회
+GET http://localhost:8080/students/instructors
+Accept: application/json
