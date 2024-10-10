@@ -1,55 +1,42 @@
 package com.estsoft.springdemoproject.controller;
 
-import com.estsoft.springdemoproject.repository.Student;
-import com.estsoft.springdemoproject.repository.StudentJdbcRepository;
+import com.estsoft.springdemoproject.entity.Student;
+import com.estsoft.springdemoproject.repository.JdbcStudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-
 @RestController
-@RequestMapping("/students")
 public class StudentController {
 
-    private final StudentJdbcRepository studentJdbcRepository;
+    private final JdbcStudentRepository studentRepository;
 
-    // StudentJdbcRepository 의존성 주입
+    // StudentRepository 의존성 주입
     @Autowired
-    public StudentController(StudentJdbcRepository studentJdbcRepository) {
-        this.studentJdbcRepository = studentJdbcRepository;
+    public StudentController(JdbcStudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
-    // 모든 학생 이름 목록 조회
-    @GetMapping("/names")
-    public ResponseEntity<List<String>> getStudentNames() {
-        List<String> studentNames = studentJdbcRepository.selectStudentNameList();
-        return ResponseEntity.ok(studentNames);
+    // 특정 학생의 이름을 조회
+    @GetMapping("/student/{id}")
+    public ResponseEntity<String> getStudentName(@PathVariable Long id) {
+        return studentRepository.findById(id)
+                .map(student -> ResponseEntity.ok(student.getName()))
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    // 특정 학생 이름과 나이를 조건으로 조회
-    @GetMapping("/name-age")
-    public ResponseEntity<Map<String, Object>> getStudentByNameAndAge(
+    // 새로운 학생 정보를 저장
+    @PostMapping("/student")
+    public ResponseEntity<String> saveStudent(
             @RequestParam String name,
-            @RequestParam Integer age) {
-        Map<String, Object> studentInfo = studentJdbcRepository.selectStudentName(name, age);
-        return ResponseEntity.ok(studentInfo);
-    }
+            @RequestParam Integer age,
+            @RequestParam(required = false) String desc) {
 
-    // 이름과 나이를 조건으로 전체 학생 정보 조회 (NamedParameterJdbcTemplate 사용)
-    @GetMapping("/full-info")
-    public ResponseEntity<Student> getStudentFullInfo(
-            @RequestParam String name,
-            @RequestParam Integer age) {
-        Student student = studentJdbcRepository.selectStudentName3(name, age);
-        return ResponseEntity.ok(student);
-    }
-
-    // 모든 강사 이름 목록 조회
-    @GetMapping("/instructors")
-    public ResponseEntity<List<String>> getInstructorNames() {
-        List<String> instructorNames = studentJdbcRepository.selectInstructorNameList();
-        return ResponseEntity.ok(instructorNames);
+        Student student = new Student();
+        student.setName(name);
+        student.setAge(age);
+        student.setDesc(desc);
+        studentRepository.save(student);
+        return ResponseEntity.ok("Student saved");
     }
 }
