@@ -39,6 +39,7 @@ dependencies {
 
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
     runtimeOnly 'com.h2database:h2'
+    implementation 'com.google.code.gson:gson:2.11.0'
 }
 
 tasks.named('test') {
