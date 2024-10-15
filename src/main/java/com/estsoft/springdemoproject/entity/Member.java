@@ -1,4 +1,4 @@
-package com.estsoft.springdemoproject.repository;
+package com.estsoft.springdemoproject.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

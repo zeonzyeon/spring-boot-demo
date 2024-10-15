@@ -1,6 +1,6 @@
 package com.estsoft.springdemoproject.service;
 
-import com.estsoft.springdemoproject.repository.Member;
+import com.estsoft.springdemoproject.entity.Member;
 import com.estsoft.springdemoproject.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

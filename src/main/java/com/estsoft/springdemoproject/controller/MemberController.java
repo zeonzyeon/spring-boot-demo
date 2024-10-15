@@ -1,7 +1,7 @@
 package com.estsoft.springdemoproject.controller;
 
 import com.estsoft.springdemoproject.service.MemberService;
-import com.estsoft.springdemoproject.repository.Member;
+import com.estsoft.springdemoproject.entity.Member;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
