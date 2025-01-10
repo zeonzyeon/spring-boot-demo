@@ -1,4 +1,4 @@
-# Spring Boot Study
+# Spring-Boot Study
 
 - `IoC`와 `DI` (제어의 역전 및 의존성 주입)
 - `Entity` - `Repository` - `Service` 패턴 구현
